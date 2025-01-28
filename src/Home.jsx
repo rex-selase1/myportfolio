@@ -1,34 +1,34 @@
 import { MdArrowOutward } from "react-icons/md";
-// import { FaArrowUp } from "react-icons/fa";
+import { FaArrowUp } from "react-icons/fa";
 import { useEffect, useState } from "react";
 
 const Home = () => {
   const [scrollY, setScrollY] = useState(0);
+  // const [showTechs, setShowTechs] = useState(false)
 
   useEffect(() => {
-      const handleScroll = () => {
-          // Ensure we're reading the scroll position from the document body
-          setScrollY(window.scrollY || document.documentElement.scrollTop);
-      };
+    const handleScroll = () => {
 
-      // Attach the scroll event listener to the window
-      window.addEventListener('scroll', handleScroll);
+      setScrollY(window.scrollY || document.documentElement.scrollTop);
+      // setShowTechs(true)
+    };
 
-      // Cleanup on unmount
-      return () => {
-          window.removeEventListener('scroll', handleScroll);
-      };
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []); // Empty dependency array to ensure this runs once on mount
-  
+
   return (
     // main box
-    <div className="main   w-full overflow-y-scroll font-MonaSans scroll-smooth ">
+    <div className="main  w-full h-auto overflow-scroll font-MonaSans scroll-smooth relative">
       {/* header section */}
       <header
         id="home"
         className="flex justify-between pb-7 pt-1  mb-3 items-center w-[90%] m-auto"
       >
-        <h1 className=" text-2xl font-extrabold ">Shamouah._</h1>
+        <h1 className=" text-2xl font-extrabold ">{scrollY}</h1>
         <nav className="popIn flex items-center gap-9 text-md  ">
           <p className="cursor-pointer hover:underline hover:text-md bg-green-200 p-4">
             Introduction{" "}
@@ -53,7 +53,15 @@ const Home = () => {
       </header>
 
       {/* back to top button */}
+      {scrollY > 250 && <div  className="fixed z-10 rounded-full w-[60px] h-[60px] flex bg-neutral-900 left-[90%] top-[80%] justify-center items-center  ">
+        <a
+          href="#home"
+         
+        >
+                  <FaArrowUp className="w-full text-white" />
 
+        </a>
+      </div>}
       {/*introduction section */}
 
       <div className="introduction w-full flex flex-col gap-10">
@@ -87,11 +95,11 @@ const Home = () => {
             </h1>
           </div>
           <div className="text2 w-[33%] px-1  mt-[80px] ">
-            <p className="slideInRight text-sm w-[100%] ">
+            {scrollY > 7 && <p className=" slideInRight text-sm w-[100%] ">
               Lorem ipsum dolor sit amet consectetur adipisicing elit.
               Voluptatem autem fugiat quisquam ea recusandae ex distinctio sunt
               nji
-            </p>
+            </p>}
             <p className="flex rounded-full items-center font-semibold transition ease-in-out duration-500 justify-center border border-black my-6 gap-1 w-[40%]  text-sm p-2 cursor-pointer hover:bg-black hover:text-white hover:font-semibold">
               Hire Me <MdArrowOutward />
             </p>
@@ -100,7 +108,7 @@ const Home = () => {
       </div>
       <hr className="mt-[70px] w-[40%] m-auto" />
       {/* skills section */}
-      <div className="slideUp skills flex w-[90%] m-auto gap-3 px-1 mt-[80px] mb-[60px]">
+      {scrollY > 200 && <div className="slideUp skills flex w-[90%] m-auto gap-3 px-1 mt-[80px] mb-[60px]">
         <div className="div1 flex flex-col w-[30%] gap-3 ">
           <img
             src="/sim1.jpg"
@@ -157,7 +165,7 @@ const Home = () => {
             />
           </div>
         </div>
-      </div>
+      </div> }
     </div>
   );
 };

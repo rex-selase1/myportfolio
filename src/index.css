@@ -8,6 +8,8 @@
 
 ::-webkit-scrollbar {
   width: 10px;
+  display: none;
+  scroll-behavior: smooth;
 }
 
 /* Track */
@@ -35,6 +37,7 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+ 
 }
 .scrolled {
   position: absolute;
@@ -82,7 +85,6 @@ body {
 }
 .slideInRight{
   opacity: 0;
-  transform: translateX(-200%); 
   animation: slideInLeft 1s forwards;
 }
 .slideUp{
@@ -130,7 +132,7 @@ body {
   from {
     opacity: 0;
     filter: contrast(3);
-    transform: translateX(-100%);
+    transform: translateX(-200%);
     z-index: 9999999; 
   }
   to {
